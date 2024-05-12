@@ -14,6 +14,8 @@ interface TextInputProps {
   placeholder?: string;
   value?: string;
   onChangeText?: (text: string) => void;
+  icon?: React.JSX.Element | ((props: { color: string }) => React.JSX.Element);
+  iconPosition?: 'left' | 'right';
 }
 
 const TextInput = ({
@@ -21,6 +23,8 @@ const TextInput = ({
   placeholder,
   value,
   onChangeText,
+  icon,
+  iconPosition = 'left',
 }: TextInputProps) => {
   const [isFocused, setIsFocused] = useState(false);
   const [valueLength, setValueLength] = useState(0);
@@ -37,8 +41,8 @@ const TextInput = ({
   };
 
   const handleBlur = () => {
-    if (!value && valueLength === 0) {
-      setIsFocused(false);
+    setIsFocused(false);
+    if (!value && !placeholder && valueLength === 0) {
       Animated.timing(slideAnim, {
         toValue: 0,
         duration: 200,
@@ -48,7 +52,7 @@ const TextInput = ({
   };
 
   useEffect(() => {
-    if (value) {
+    if (value || placeholder) {
       handleFocus();
     }
   }, []);
@@ -65,36 +69,51 @@ const TextInput = ({
   };
 
   return (
-    <View style={styles.container}>
-      <Animated.View style={[slideStyle]}>
-        {label && (
-          <Text
-            style={[
-              styles.label,
-              {
-                color: isFocused ? Colors.primary : Colors.black,
-                fontSize: isFocused ? 12 : 16,
-              },
-            ]}
-          >
-            {label}
-          </Text>
-        )}
-      </Animated.View>
-      <Input
-        ref={inputRef}
-        value={value}
-        placeholder={placeholder}
-        onChangeText={(text) => {
-          if (onChangeText) {
-            onChangeText(text);
-          }
-          setValueLength(text.length);
-          inputRef.current.setNativeProps({ text });
-        }}
-        onFocus={handleFocus}
-        onBlur={handleBlur}
-      />
+    <View
+      style={[
+        styles.container,
+        {
+          borderColor: isFocused ? Colors.primary : Colors.black,
+          flexDirection: iconPosition === 'right' ? 'row-reverse' : 'row',
+        },
+      ]}
+    >
+      {typeof icon === 'function'
+        ? icon?.({ color: isFocused ? Colors.primary : Colors.black })
+        : icon}
+
+      <View style={{ flex: 1 }}>
+        <Animated.View style={[slideStyle]}>
+          {label && (
+            <Text
+              style={[
+                styles.label,
+                {
+                  color: isFocused ? Colors.primary : Colors.black,
+                  fontSize: valueLength > 0 || placeholder ? 12 : 16,
+                },
+              ]}
+            >
+              {label}
+            </Text>
+          )}
+        </Animated.View>
+        <Input
+          ref={inputRef}
+          value={value}
+          placeholder={placeholder}
+          style={{ flex: 1 }}
+          onChangeText={(text) => {
+            if (onChangeText) {
+              onChangeText(text);
+            }
+            setValueLength(text.length);
+            inputRef.current.setNativeProps({ text });
+          }}
+          onFocus={handleFocus}
+          onBlur={handleBlur}
+        />
+      </View>
     </View>
   );
 };
@@ -108,6 +127,8 @@ const styles = StyleSheet.create({
     borderRadius: Theme.borderRadius,
     padding: Theme.padding,
     marginVertical: 10,
+    flexDirection: 'row',
+    gap: 5,
   },
   label: {
     position: 'absolute',

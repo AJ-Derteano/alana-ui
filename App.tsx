@@ -113,10 +113,28 @@ export default function App() {
         >
           <TextInput
             label='Label'
-            // placeholder='Write here'
             onChangeText={(text) => {
               console.log(text);
             }}
+          />
+          <TextInput
+            label='Label icon left'
+            placeholder='Write here'
+            onChangeText={(text) => {
+              console.log(text);
+            }}
+            icon={<AntDesign name='search1' size={24} color='black' />}
+          />
+          <TextInput
+            label='Label icon right'
+            placeholder='Write here'
+            onChangeText={(text) => {
+              console.log(text);
+            }}
+            icon={({ color }) => (
+              <AntDesign name='search1' size={24} color={color} />
+            )}
+            iconPosition='right'
           />
         </View>
       </ScrollView>
