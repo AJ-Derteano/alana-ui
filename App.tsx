@@ -66,7 +66,7 @@ export default function App() {
           </View>
         </View>
 
-        <Text>Icon Button:</Text>
+        <Text>Icon Buttons:</Text>
         <View
           style={{
             display: 'flex',
@@ -101,6 +101,84 @@ export default function App() {
                 <AntDesign name='unlock' size={24} color={color} />
               )}
               iconPosition='right'
+            />
+          </View>
+        </View>
+
+        <Text>Buttons with loading state</Text>
+        <View
+          style={{
+            display: 'flex',
+            flexDirection: 'row',
+            flexWrap: 'wrap',
+            justifyContent: 'space-evenly',
+            gap: 10,
+            marginBottom: 20,
+          }}
+        >
+          <View
+            style={{
+              gap: 10,
+            }}
+          >
+            <Button
+              title='Default button'
+              onPress={() => Alert.alert('Default button pressed')}
+              loading
+            />
+          </View>
+          <View
+            style={{
+              gap: 10,
+            }}
+          >
+            <Button
+              type='primary'
+              title='Primary button'
+              onPress={() => Alert.alert('Primary button pressed')}
+              iconPosition='right'
+              loading
+            />
+          </View>
+        </View>
+
+        <Text>
+          Buttons with loading state and custom loading color and size
+        </Text>
+        <View
+          style={{
+            display: 'flex',
+            flexDirection: 'row',
+            flexWrap: 'wrap',
+            justifyContent: 'space-evenly',
+            gap: 10,
+            marginBottom: 20,
+          }}
+        >
+          <View
+            style={{
+              gap: 10,
+            }}
+          >
+            <Button
+              title='Default button'
+              onPress={() => Alert.alert('Default button pressed')}
+              loading
+              loadingColor='red'
+            />
+          </View>
+          <View
+            style={{
+              gap: 10,
+            }}
+          >
+            <Button
+              type='primary'
+              title='Primary button'
+              onPress={() => Alert.alert('Primary button pressed')}
+              iconPosition='right'
+              loading
+              loadingColor='green'
             />
           </View>
         </View>

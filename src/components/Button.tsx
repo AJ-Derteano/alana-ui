@@ -1,4 +1,10 @@
-import { StyleSheet, Text, TouchableOpacity, View } from 'react-native';
+import {
+  ActivityIndicator,
+  StyleSheet,
+  Text,
+  TouchableOpacity,
+  View,
+} from 'react-native';
 import React from 'react';
 import { Colors } from '../theme/Colors';
 
@@ -8,6 +14,8 @@ interface ButtonProps {
   bordered?: boolean;
   icon?: React.JSX.Element | ((props: { color: string }) => React.JSX.Element);
   iconPosition?: 'left' | 'right';
+  loading?: boolean;
+  loadingColor?: string;
   onPress?: () => void;
 }
 
@@ -17,6 +25,8 @@ const Button = ({
   bordered = false,
   icon,
   iconPosition = 'left',
+  loading = false,
+  loadingColor = type ? Colors.white : Colors.black,
   onPress,
 }: ButtonProps) => {
   const getButtonType = () => {
@@ -62,6 +72,7 @@ const Button = ({
         {typeof icon === 'function'
           ? icon?.({ color: type ? Colors.white : Colors.black })
           : icon}
+        {loading && !icon && <ActivityIndicator color={loadingColor} />}
         <Text style={{ ...getTextColor() }}>{title}</Text>
       </TouchableOpacity>
     </View>
