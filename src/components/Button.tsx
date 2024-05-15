@@ -1,5 +1,6 @@
 import {
   ActivityIndicator,
+  DimensionValue,
   StyleSheet,
   Text,
   TouchableOpacity,
@@ -9,7 +10,7 @@ import React from 'react';
 import { Colors } from '../theme/Colors';
 
 interface ButtonProps {
-  title: string;
+  title?: string;
   type?: '' | 'primary' | 'error' | 'success' | 'warning';
   bordered?: boolean;
   icon?: React.JSX.Element | ((props: { color: string }) => React.JSX.Element);
@@ -73,7 +74,7 @@ const Button = ({
           ? icon?.({ color: type ? Colors.white : Colors.black })
           : icon}
         {loading && !icon && <ActivityIndicator color={loadingColor} />}
-        <Text style={{ ...getTextColor() }}>{title}</Text>
+        {title && <Text style={{ ...getTextColor() }}>{title}</Text>}
       </TouchableOpacity>
     </View>
   );

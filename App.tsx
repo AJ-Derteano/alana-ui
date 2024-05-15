@@ -1,9 +1,10 @@
 import { Alert, ScrollView, StyleSheet, Text, View } from 'react-native';
 
-import { AntDesign } from '@expo/vector-icons';
+import { AntDesign, FontAwesome } from '@expo/vector-icons';
 import { Button } from './src';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import TextInput from './src/components/TextInput';
+import Label from './src/components/Label';
 
 export default function App() {
   return (
@@ -82,6 +83,12 @@ export default function App() {
               gap: 10,
             }}
           >
+            <Button
+              title='Default button'
+              onPress={() => Alert.alert('Default button pressed')}
+              icon={<AntDesign name='unlock' size={24} color={'black'} />}
+            />
+
             <Button
               title='Default button'
               onPress={() => Alert.alert('Default button pressed')}
@@ -214,6 +221,50 @@ export default function App() {
             )}
             iconPosition='right'
           />
+        </View>
+
+        <Text>Number input:</Text>
+        <View
+          style={{
+            marginBottom: 20,
+          }}
+        >
+          <TextInput
+            label='Label'
+            onChangeText={(text) => {
+              console.log(text);
+            }}
+            keyBoardType='numeric'
+          />
+          <TextInput
+            label='Label icon left'
+            placeholder='Write here'
+            onChangeText={(text) => {
+              console.log(text);
+            }}
+            icon={<FontAwesome name='usd' size={24} color={'black'} />}
+            keyBoardType='numeric'
+          />
+          <TextInput
+            label='Label icon right'
+            placeholder='Write here'
+            onChangeText={(text) => {
+              console.log(text);
+            }}
+            icon={({ color }) => (
+              <FontAwesome name='usd' size={24} color={color} />
+            )}
+            iconPosition='right'
+            keyBoardType='decimal-pad'
+          />
+
+          <Label type='text'>Text label</Label>
+          <Label type='h1'>Heading 1</Label>
+          <Label type='h2'>Heading 2</Label>
+          <Label type='h3'>Heading 3</Label>
+          <Label type='h4'>Heading 4</Label>
+          <Label type='h5'>Heading 5</Label>
+          <Label type='h6'>Heading 6</Label>
         </View>
       </ScrollView>
     </SafeAreaView>
