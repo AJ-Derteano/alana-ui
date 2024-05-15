@@ -199,7 +199,7 @@ export default function App() {
           <TextInput label='Label' />
           <TextInput
             label='Label icon left'
-            placeholder='Write here'
+            placeholder='Hello world 🌍'
             icon={<AntDesign name='search1' size={24} color='black' />}
           />
           <TextInput
