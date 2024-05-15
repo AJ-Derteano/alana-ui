@@ -196,26 +196,15 @@ export default function App() {
             marginBottom: 20,
           }}
         >
-          <TextInput
-            label='Label'
-            onChangeText={(text) => {
-              console.log(text);
-            }}
-          />
+          <TextInput label='Label' />
           <TextInput
             label='Label icon left'
             placeholder='Write here'
-            onChangeText={(text) => {
-              console.log(text);
-            }}
             icon={<AntDesign name='search1' size={24} color='black' />}
           />
           <TextInput
             label='Label icon right'
             placeholder='Write here'
-            onChangeText={(text) => {
-              console.log(text);
-            }}
             icon={({ color }) => (
               <AntDesign name='search1' size={24} color={color} />
             )}
@@ -229,28 +218,16 @@ export default function App() {
             marginBottom: 20,
           }}
         >
-          <TextInput
-            label='Label'
-            onChangeText={(text) => {
-              console.log(text);
-            }}
-            keyBoardType='numeric'
-          />
+          <TextInput label='Label' keyBoardType='numeric' />
           <TextInput
             label='Label icon left'
             placeholder='Write here'
-            onChangeText={(text) => {
-              console.log(text);
-            }}
             icon={<FontAwesome name='usd' size={24} color={'black'} />}
             keyBoardType='numeric'
           />
           <TextInput
             label='Label icon right'
             placeholder='Write here'
-            onChangeText={(text) => {
-              console.log(text);
-            }}
             icon={({ color }) => (
               <FontAwesome name='usd' size={24} color={color} />
             )}
