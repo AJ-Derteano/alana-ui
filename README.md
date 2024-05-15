@@ -37,6 +37,20 @@ import { Button, TextInput } from 'alana-ui';
 
 Para obtener más información sobre cómo utilizar los diferentes componentes, consulta la [documentación](https://alana-ui-docs.com).
 
+## Ejemplo de componentes
+
+![Botones](./assets/images/buttons.png)
+
+![Botones con icono](./assets/images/icon_buttons.png)
+
+![Botones de carga](./assets/images/loading_buttons.png)
+
+![Entrada de texto](./assets/images/input_text.png)
+
+![Entrada de numero](./assets/images/number_input.png)
+
+![Texto](./assets/images/label.png)
+
 ## Contribución
 
 ¡Nos encantaría recibir contribuciones! Si tienes alguna sugerencia, problema o quieres contribuir con código, no dudes en abrir un [issue](https://github.com/alana-ui/alana-ui/issues) o enviar un [pull request](https://github.com/alana-ui/alana-ui/pulls).
