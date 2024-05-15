@@ -4,6 +4,7 @@ import {
   TextInput as Input,
   View,
   Animated,
+  KeyboardTypeOptions,
 } from 'react-native';
 import React, { useEffect, useRef, useState } from 'react';
 import { Theme } from '../theme/Theme';
@@ -13,18 +14,20 @@ interface TextInputProps {
   label?: string;
   placeholder?: string;
   value?: string;
-  onChangeText?: (text: string) => void;
   icon?: React.JSX.Element | ((props: { color: string }) => React.JSX.Element);
   iconPosition?: 'left' | 'right';
+  keyBoardType?: KeyboardTypeOptions;
+  onChangeText?: (text: string) => void;
 }
 
 const TextInput = ({
   label,
   placeholder,
   value,
-  onChangeText,
   icon,
   iconPosition = 'left',
+  keyBoardType = 'default',
+  onChangeText,
 }: TextInputProps) => {
   const [isFocused, setIsFocused] = useState(false);
   const [valueLength, setValueLength] = useState(0);
@@ -99,14 +102,24 @@ const TextInput = ({
           )}
         </Animated.View>
         <Input
+          keyboardType={keyBoardType}
           ref={inputRef}
           value={value}
           placeholder={placeholder}
           style={{ flex: 1 }}
           onChangeText={(text) => {
+            if (
+              keyBoardType === 'numeric' ||
+              keyBoardType === 'phone-pad' ||
+              keyBoardType === 'number-pad'
+            ) {
+              text = text.replace(/[^0-9]/g, '');
+            }
+
             if (onChangeText) {
               onChangeText(text);
             }
+            
             setValueLength(text.length);
             inputRef.current.setNativeProps({ text });
           }}
