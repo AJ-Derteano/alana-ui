@@ -51,6 +51,8 @@ Para obtener más información sobre cómo utilizar los diferentes componentes, 
 
 ![Texto](./assets/images/label.png)
 
+![Listas](./assets/images/list.png)
+
 ## Contribución
 
 ¡Nos encantaría recibir contribuciones! Si tienes alguna sugerencia, problema o quieres contribuir con código, no dudes en abrir un [issue](https://github.com/alana-ui/alana-ui/issues) o enviar un [pull request](https://github.com/alana-ui/alana-ui/pulls).
