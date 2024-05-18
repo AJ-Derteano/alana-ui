@@ -2,7 +2,7 @@ import { StyleSheet, View } from 'react-native';
 import React from 'react';
 import { Colors } from '../../theme/Colors';
 
-interface CardHeaderProps {
+export interface CardHeaderProps {
   children: React.ReactNode;
   bordered?: boolean;
   light?: boolean;
