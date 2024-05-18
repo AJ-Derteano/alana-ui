@@ -4,16 +4,26 @@ import React from 'react';
 interface LabelProps {
   children?: React.ReactNode;
   type?: 'text' | 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6';
+  underline?: boolean;
 }
 
-const Label = ({ children, type = 'text' }: LabelProps) => {
+const Label = ({ children, type = 'text', underline = false }: LabelProps) => {
   const getFontSize = () => {
     return styles[type ?? 'text'];
   };
 
   return (
     <View>
-      <Text style={[getFontSize()]}>{children}</Text>
+      <Text
+        style={[
+          getFontSize(),
+          {
+            textDecorationLine: underline ? 'underline' : 'none',
+          },
+        ]}
+      >
+        {children}
+      </Text>
     </View>
   );
 };
