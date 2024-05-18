@@ -1,33 +1,57 @@
-import { StyleSheet, Text, TouchableOpacity, View } from 'react-native';
+import {
+  ActivityIndicator,
+  StyleSheet,
+  Text,
+  TouchableOpacity,
+  View,
+} from 'react-native';
 import React from 'react';
 import { Colors } from '../theme/Colors';
 
 interface ButtonProps {
-  title: string;
+  title?: string;
   type?: '' | 'primary' | 'error' | 'success' | 'warning';
   bordered?: boolean;
+  borderTop?: boolean;
+  borderBottom?: boolean;
+  borderColor?: string;
   icon?: React.JSX.Element | ((props: { color: string }) => React.JSX.Element);
   iconPosition?: 'left' | 'right';
+  loading?: boolean;
+  loadingColor?: string;
+  block?: boolean;
   onPress?: () => void;
 }
 
 const Button = ({
   type,
   title,
-  bordered = false,
+  bordered = true,
+  borderTop = false,
+  borderBottom = false,
+  borderColor = Colors.black,
   icon,
   iconPosition = 'left',
+  loading = false,
+  loadingColor = type ? Colors.white : Colors.black,
+  block = false,
   onPress,
 }: ButtonProps) => {
   const getButtonType = () => {
     if (type) {
       return {
         ...styles[type ?? ''],
-        ...(!bordered ? styles.noBorder : {}),
+        ...styles.noBorder,
       };
     }
 
-    return styles.default;
+    return {
+      ...styles.default,
+      ...(bordered ? {} : styles.noBorder),
+      ...(borderTop ? styles.borderTop : {}),
+      ...(borderBottom ? styles.borderBottom : {}),
+      borderColor,
+    };
   };
 
   const getTextColor = () => {
@@ -48,7 +72,11 @@ const Button = ({
   };
 
   return (
-    <View>
+    <View
+      style={{
+        flex: block ? 1 : 0,
+      }}
+    >
       <TouchableOpacity
         style={{
           ...styles.button,
@@ -62,7 +90,8 @@ const Button = ({
         {typeof icon === 'function'
           ? icon?.({ color: type ? Colors.white : Colors.black })
           : icon}
-        <Text style={{ ...getTextColor() }}>{title}</Text>
+        {loading && !icon && <ActivityIndicator color={loadingColor} />}
+        {title && <Text style={[getTextColor()]}>{title}</Text>}
       </TouchableOpacity>
     </View>
   );
@@ -82,6 +111,16 @@ const styles = StyleSheet.create({
   },
   noBorder: {
     borderWidth: 0,
+  },
+  borderTop: {
+    borderTopWidth: 1,
+    borderColor: Colors.black,
+    borderRadius: 0,
+  },
+  borderBottom: {
+    borderBottomWidth: 1,
+    borderColor: Colors.black,
+    borderRadius: 0,
   },
   default: {
     backgroundColor: Colors.white,
