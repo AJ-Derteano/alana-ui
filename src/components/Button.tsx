@@ -1,6 +1,5 @@
 import {
   ActivityIndicator,
-  DimensionValue,
   StyleSheet,
   Text,
   TouchableOpacity,
@@ -23,7 +22,7 @@ interface ButtonProps {
 const Button = ({
   type,
   title,
-  bordered = false,
+  bordered = true,
   icon,
   iconPosition = 'left',
   loading = false,
@@ -34,11 +33,11 @@ const Button = ({
     if (type) {
       return {
         ...styles[type ?? ''],
-        ...(!bordered ? styles.noBorder : {}),
+        ...styles.noBorder,
       };
     }
 
-    return styles.default;
+    return { ...styles.default, ...(bordered ? {} : styles.noBorder) };
   };
 
   const getTextColor = () => {
@@ -74,7 +73,7 @@ const Button = ({
           ? icon?.({ color: type ? Colors.white : Colors.black })
           : icon}
         {loading && !icon && <ActivityIndicator color={loadingColor} />}
-        {title && <Text style={{ ...getTextColor() }}>{title}</Text>}
+        {title && <Text style={[getTextColor()]}>{title}</Text>}
       </TouchableOpacity>
     </View>
   );
