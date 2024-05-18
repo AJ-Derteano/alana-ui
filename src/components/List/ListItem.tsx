@@ -2,7 +2,7 @@ import { Pressable, StyleSheet, Text, View } from 'react-native';
 import React from 'react';
 import { Colors } from '../../theme/Colors';
 
-interface ListItemProps {
+export interface ListItemProps {
   icon?: React.ReactNode;
   label?: string;
   border?: boolean;

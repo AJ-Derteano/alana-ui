@@ -7,7 +7,6 @@ import Label from '../Label';
 interface ListProps {
   children?: React.ReactNode;
   title?: string;
-  // ListAccordionProps
   border?: boolean;
 }
 

@@ -4,7 +4,7 @@ import { AntDesign } from '@expo/vector-icons';
 import { Colors } from '../../theme/Colors';
 import ListItem from './ListItem';
 
-interface ListAccordionProps {
+export interface ListAccordionProps {
   children?: React.ReactNode;
   title?: string;
   icon?: React.JSX.Element;
