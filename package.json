@@ -1,8 +1,8 @@
 {
   "name": "alana-ui",
-  "version": "0.0.1",
+  "version": "0.0.3",
   "private": false,
-  "main": "expo/AppEntry.js",
+  "main": "lib\\commonjs\\index.js",
   "files": [
     "src/*",
     "lib",
@@ -12,6 +12,10 @@
     "dist/*",
     "types/*"
   ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/AJ-Derteano/alana-ui.git"
+  },
   "scripts": {
     "prepare": "bob build",
     "start": "expo start",
@@ -64,5 +68,20 @@
   "eslintIgnore": [
     "node_modules/",
     "lib/"
-  ]
+  ],
+  "author": "AJ Derteano",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/AJ-Derteano/alana-ui/issues"
+  },
+  "keywords": [
+    "alana ui",
+    "react native",
+    "expo",
+    "ui",
+    "component library"
+  ],
+  "publishConfig": {
+    "registry": "https://registry.npmjs.org/"
+  }
 }
