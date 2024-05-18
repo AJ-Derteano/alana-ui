@@ -17,6 +17,7 @@ interface TextInputProps {
   icon?: React.JSX.Element | ((props: { color: string }) => React.JSX.Element);
   iconPosition?: 'left' | 'right';
   keyBoardType?: KeyboardTypeOptions;
+  colorFocus?: string;
   onChangeText?: (text: string) => void;
 }
 
@@ -27,12 +28,13 @@ const TextInput = ({
   icon,
   iconPosition = 'left',
   keyBoardType = 'default',
+  colorFocus = Colors.primary,
   onChangeText,
 }: TextInputProps) => {
   const [isFocused, setIsFocused] = useState(false);
   const [valueLength, setValueLength] = useState(0);
   const [slideAnim] = useState(new Animated.Value(0));
-  const inputRef = useRef(null);
+  const inputRef = useRef<Input>(null);
 
   const handleFocus = () => {
     setIsFocused(true);
@@ -76,13 +78,13 @@ const TextInput = ({
       style={[
         styles.container,
         {
-          borderColor: isFocused ? Colors.primary : Colors.black,
+          borderColor: isFocused ? colorFocus : Colors.black,
           flexDirection: iconPosition === 'right' ? 'row-reverse' : 'row',
         },
       ]}
     >
       {typeof icon === 'function'
-        ? icon?.({ color: isFocused ? Colors.primary : Colors.black })
+        ? icon?.({ color: isFocused ? colorFocus : Colors.black })
         : icon}
 
       <View style={{ flex: 1 }}>
@@ -92,7 +94,7 @@ const TextInput = ({
               style={[
                 styles.label,
                 {
-                  color: isFocused ? Colors.primary : Colors.black,
+                  color: isFocused ? colorFocus : Colors.black,
                   fontSize: valueLength > 0 || placeholder ? 12 : 16,
                 },
               ]}
@@ -113,15 +115,18 @@ const TextInput = ({
               keyBoardType === 'phone-pad' ||
               keyBoardType === 'number-pad'
             ) {
-              text = text.replace(/[^0-9]/g, '');
+              text = text.replace(/\D/g, '');
             }
 
             if (onChangeText) {
               onChangeText(text);
             }
-            
+
             setValueLength(text.length);
-            inputRef.current.setNativeProps({ text });
+
+            if (inputRef.current) {
+              inputRef.current.setNativeProps({ text });
+            }
           }}
           onFocus={handleFocus}
           onBlur={handleBlur}
