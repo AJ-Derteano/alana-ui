@@ -1,13 +1,21 @@
-import { StyleSheet, Text, View } from 'react-native';
+import { StyleSheet, Text, TextStyle, View } from 'react-native';
 import React from 'react';
 
 interface LabelProps {
   children?: React.ReactNode;
   type?: 'text' | 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6';
   underline?: boolean;
+  marginVertical?: number;
+  textAlign?: TextStyle['textAlign'];
 }
 
-const Label = ({ children, type = 'text', underline = false }: LabelProps) => {
+const Label = ({
+  children,
+  type = 'text',
+  underline = false,
+  marginVertical = 0,
+  textAlign = 'left',
+}: LabelProps) => {
   const getFontSize = () => {
     return styles[type ?? 'text'];
   };
@@ -17,6 +25,8 @@ const Label = ({ children, type = 'text', underline = false }: LabelProps) => {
       <Text
         style={[
           getFontSize(),
+          { marginVertical },
+          { textAlign },
           {
             textDecorationLine: underline ? 'underline' : 'none',
           },
@@ -36,26 +46,20 @@ const styles = StyleSheet.create({
   },
   h1: {
     fontSize: 32,
-    marginBottom: 8,
   },
   h2: {
     fontSize: 24,
-    marginBottom: 8,
   },
   h3: {
     fontSize: 20,
-    marginBottom: 8,
   },
   h4: {
     fontSize: 18,
-    marginBottom: 8,
   },
   h5: {
     fontSize: 16,
-    marginBottom: 8,
   },
   h6: {
     fontSize: 14,
-    marginBottom: 8,
   },
 });
