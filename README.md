@@ -39,23 +39,43 @@ Para obtener más información sobre cómo utilizar los diferentes componentes, 
 
 ## Ejemplo de componentes
 
-![Botones](./assets/images/buttons.png)
+<img alt="Botones" src="docs/static/images/buttons.png" width="300">
 
-![Botones con icono](./assets/images/icon_buttons.png)
+<img alt="Botones" src="docs/static/images/icon_buttons.png" width="300">
 
-![Botones de carga](./assets/images/loading_buttons.png)
+<img alt="Botones" src="docs/static/images/loading_buttons.png" width="300">
 
-![Entrada de texto](./assets/images/input_text.png)
+<img alt="Botones" src="docs/static/images/input_text.png" width="300">
 
-![Entrada de numero](./assets/images/number_input.png)
+<img alt="Botones" src="docs/static/images/number_input.png" width="300">
 
-![Texto](./assets/images/label.png)
+<img alt="Botones" src="docs/static/images/label.png" width="300">
 
-![Listas](./assets/images/list.png)
+<img alt="Botones" src="docs/static/images/list.png" width="300">
+
+<img alt="Botones" src="docs/static/images/card.png" width="300">
 
 ## Contribución
 
-¡Nos encantaría recibir contribuciones! Si tienes alguna sugerencia, problema o quieres contribuir con código, no dudes en abrir un [issue](https://github.com/alana-ui/alana-ui/issues) o enviar un [pull request](https://github.com/alana-ui/alana-ui/pulls).
+¡Nos encantaría recibir contribucones! Si tienes alguna sugerencia, problema o quieres contribuir con código, no dudes en abrir un [issue](https://github.com/alana-ui/alana-ui/issues) o enviar un [pull request](https://github.com/alana-ui/alana-ui/pulls).
+
+<table>
+  <tr>
+    <td align="center">
+      <a href="https://aj-derteano.github.io/">
+        <img src="https://avatars.githubusercontent.com/u/55628495?u=df2bb92f2981c44df7f64ea6bd77e7945da0674f&v=4" width="100px;" alt="AJ Derteano"/>
+        <br />
+          <sub>
+            <b>AJ Derteano</b>
+          </sub>
+      </a>
+      <br />
+      <a href="#ideas-AJ-Derteano" title="Ideas, Planning, & Feedback">🤔</a>
+      <a href="https://github.com/AJ-Derteano/alana-ui/commits?author=AJ-Derteano" title="Code">💻</a>
+      <a href="https://github.com/AJ-Derteano/alana-ui/commits?author=AJ-Derteano" title="Documentation">📖</a>
+    </td>
+  </tr>
+</table>
 
 ## Licencia
 
