@@ -5,5 +5,5 @@ export const Colors = {
   warning: '#FF9900',
   white: '#fefefe',
   black: '#000',
-  lightGray: '#f2f2f2',
+  lightGray: '#f0f0f0',
 };
