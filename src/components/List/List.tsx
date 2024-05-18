@@ -1,7 +1,8 @@
-import { StyleSheet, Text, View } from 'react-native';
+import { StyleSheet, View } from 'react-native';
 import React from 'react';
 import ListAccordion from './ListAccordion';
-import ListSection from './ListSection';
+import ListItem from './ListItem';
+import Label from '../Label';
 
 interface ListProps {
   children?: React.ReactNode;
@@ -13,7 +14,7 @@ interface ListProps {
 const List = ({ children, title, border }: ListProps) => {
   return (
     <View>
-      {title && <Text style={{ fontSize: 20, marginBottom: 15 }}>{title}</Text>}
+      {title && <Label type='h4'>{title}</Label>}
       {React.Children.map(children, (child) => {
         if (React.isValidElement(child) && child.type === ListAccordion) {
           return React.cloneElement(child, { border } as React.Attributes);
@@ -26,7 +27,7 @@ const List = ({ children, title, border }: ListProps) => {
 };
 
 List.Accordion = ListAccordion;
-List.Section = ListSection;
+List.Item = ListItem;
 
 export default List;
 

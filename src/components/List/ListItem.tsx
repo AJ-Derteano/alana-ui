@@ -6,10 +6,17 @@ interface ListItemProps {
   icon?: React.ReactNode;
   label?: string;
   border?: boolean;
+  children?: React.ReactNode;
   onPress?: () => void;
 }
 
-const ListItem = ({ icon, label, border, onPress }: ListItemProps) => {
+const ListItem = ({
+  icon,
+  label,
+  border,
+  children,
+  onPress,
+}: ListItemProps) => {
   return (
     <View
       style={[
@@ -19,17 +26,28 @@ const ListItem = ({ icon, label, border, onPress }: ListItemProps) => {
         },
       ]}
     >
-      <Pressable
-        onPress={onPress}
-        style={{
-          flexDirection: 'row',
-          alignItems: 'center',
-          padding: 10,
-        }}
-      >
-        {icon}
-        <Text style={{ marginLeft: 20 }}>{label}</Text>
-      </Pressable>
+      {children ? (
+        <View
+          style={{
+            paddingLeft: 20,
+            paddingVertical: 10,
+          }}
+        >
+          {children}
+        </View>
+      ) : (
+        <Pressable
+          onPress={onPress}
+          style={{
+            flexDirection: 'row',
+            alignItems: 'center',
+            padding: 10,
+          }}
+        >
+          {icon}
+          <Text style={{ marginLeft: 20 }}>{label}</Text>
+        </Pressable>
+      )}
     </View>
   );
 };

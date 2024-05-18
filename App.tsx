@@ -243,7 +243,7 @@ export default function App() {
           </List.Accordion>
 
           <List.Accordion title='Listas'>
-            <List>
+            <List title='Lista acordion'>
               <List.Accordion
                 title='Customer service'
                 icon={
@@ -282,10 +282,29 @@ export default function App() {
                   onPress={() => Alert.alert('Option 3 pressed')}
                 />
               </List.Accordion>
+            </List>
 
-              <List.Section>
-                <Text>Section</Text>
-              </List.Section>
+            <List title='Lista simple'>
+              <List.Item
+                label='Item 1'
+                icon={<AntDesign name='folder1' size={24} color='black' />}
+                onPress={() => Alert.alert('Item 1 pressed')}
+              />
+              <List.Item
+                label='Item 2'
+                icon={<AntDesign name='folder1' size={24} color='black' />}
+                onPress={() => Alert.alert('Item 2 pressed')}
+              />
+              <List.Item
+                label='Item 3'
+                icon={<AntDesign name='folder1' size={24} color='black' />}
+                onPress={() => Alert.alert('Item 3 pressed')}
+              />
+
+              
+              <List.Item>
+                <Text>Item 4</Text>
+              </List.Item>
             </List>
           </List.Accordion>
         </List>
