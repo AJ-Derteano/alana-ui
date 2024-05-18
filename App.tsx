@@ -5,7 +5,6 @@ import { Button, List } from './src';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import TextInput from './src/components/TextInput';
 import Label from './src/components/Label';
-import ListAccordion from './src/components/List/ListAccordion';
 
 export default function App() {
   return (
@@ -16,7 +15,7 @@ export default function App() {
 
       <ScrollView>
         <List title='Components'>
-          <ListAccordion title='Buttons'>
+          <List.Accordion title='Buttons' expanded>
             <View
               style={{
                 display: 'flex',
@@ -60,9 +59,9 @@ export default function App() {
                 />
               </View>
             </View>
-          </ListAccordion>
+          </List.Accordion>
 
-          <ListAccordion title='Icon buttons'>
+          <List.Accordion title='Icon buttons'>
             <View
               style={{
                 display: 'flex',
@@ -106,9 +105,9 @@ export default function App() {
                 />
               </View>
             </View>
-          </ListAccordion>
+          </List.Accordion>
 
-          <ListAccordion title='Buttons with loading state'>
+          <List.Accordion title='Buttons with loading state'>
             <View
               style={{
                 display: 'flex',
@@ -144,9 +143,9 @@ export default function App() {
                 />
               </View>
             </View>
-          </ListAccordion>
+          </List.Accordion>
 
-          <ListAccordion title='Buttons with loading state and custom loading color and size'>
+          <List.Accordion title='Buttons with loading state and custom loading color and size'>
             <View
               style={{
                 display: 'flex',
@@ -184,9 +183,9 @@ export default function App() {
                 />
               </View>
             </View>
-          </ListAccordion>
+          </List.Accordion>
 
-          <ListAccordion title='Input text'>
+          <List.Accordion title='Input text'>
             <View
               style={{
                 marginBottom: 20,
@@ -207,9 +206,9 @@ export default function App() {
                 iconPosition='right'
               />
             </View>
-          </ListAccordion>
+          </List.Accordion>
 
-          <ListAccordion title='Number input'>
+          <List.Accordion title='Number input'>
             <View
               style={{
                 marginBottom: 20,
@@ -232,18 +231,18 @@ export default function App() {
                 keyBoardType='decimal-pad'
               />
             </View>
-          </ListAccordion>
+          </List.Accordion>
 
-          <ListAccordion title='Text label'>
+          <List.Accordion title='Text label'>
             <Label type='h1'>Heading 1</Label>
             <Label type='h2'>Heading 2</Label>
             <Label type='h3'>Heading 3</Label>
             <Label type='h4'>Heading 4</Label>
             <Label type='h5'>Heading 5</Label>
             <Label type='h6'>Heading 6</Label>
-          </ListAccordion>
+          </List.Accordion>
 
-          <ListAccordion title='Listas'>
+          <List.Accordion title='Listas'>
             <List>
               <List.Accordion
                 title='Customer service'
@@ -288,7 +287,7 @@ export default function App() {
                 <Text>Section</Text>
               </List.Section>
             </List>
-          </ListAccordion>
+          </List.Accordion>
         </List>
       </ScrollView>
     </SafeAreaView>

@@ -1,5 +1,5 @@
 import { Animated, Pressable, StyleSheet, Text, View } from 'react-native';
-import React, { useRef, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { AntDesign } from '@expo/vector-icons';
 import { Colors } from '../../theme/Colors';
 import ListItem from './ListItem';
@@ -9,6 +9,7 @@ interface ListAccordionProps {
   title?: string;
   icon?: React.JSX.Element;
   border?: boolean;
+  expanded?: boolean;
 }
 
 const ListAccordion = ({
@@ -16,10 +17,21 @@ const ListAccordion = ({
   title,
   icon,
   border = false,
+  expanded = false,
 }: ListAccordionProps) => {
-  const [isOpen, setIsOpen] = useState(false);
+  const [isOpen, setIsOpen] = useState(expanded);
   const [contentHeight, setContentHeight] = useState(0);
   const animation = useRef(new Animated.Value(0)).current;
+
+  useEffect(() => {
+    if (expanded) {
+      Animated.timing(animation, {
+        toValue: 1,
+        duration: 300,
+        useNativeDriver: false,
+      }).start();
+    }
+  }, []);
 
   const toggleAccordion = () => {
     // const initialValue = isOpen ? 1 : 0;
