@@ -12,10 +12,14 @@ interface ButtonProps {
   title?: string;
   type?: '' | 'primary' | 'error' | 'success' | 'warning';
   bordered?: boolean;
+  borderTop?: boolean;
+  borderBottom?: boolean;
+  borderColor?: string;
   icon?: React.JSX.Element | ((props: { color: string }) => React.JSX.Element);
   iconPosition?: 'left' | 'right';
   loading?: boolean;
   loadingColor?: string;
+  block?: boolean;
   onPress?: () => void;
 }
 
@@ -23,10 +27,14 @@ const Button = ({
   type,
   title,
   bordered = true,
+  borderTop = false,
+  borderBottom = false,
+  borderColor = Colors.black,
   icon,
   iconPosition = 'left',
   loading = false,
   loadingColor = type ? Colors.white : Colors.black,
+  block = false,
   onPress,
 }: ButtonProps) => {
   const getButtonType = () => {
@@ -37,7 +45,13 @@ const Button = ({
       };
     }
 
-    return { ...styles.default, ...(bordered ? {} : styles.noBorder) };
+    return {
+      ...styles.default,
+      ...(bordered ? {} : styles.noBorder),
+      ...(borderTop ? styles.borderTop : {}),
+      ...(borderBottom ? styles.borderBottom : {}),
+      borderColor,
+    };
   };
 
   const getTextColor = () => {
@@ -58,7 +72,11 @@ const Button = ({
   };
 
   return (
-    <View>
+    <View
+      style={{
+        flex: block ? 1 : 0,
+      }}
+    >
       <TouchableOpacity
         style={{
           ...styles.button,
@@ -93,6 +111,16 @@ const styles = StyleSheet.create({
   },
   noBorder: {
     borderWidth: 0,
+  },
+  borderTop: {
+    borderTopWidth: 1,
+    borderColor: Colors.black,
+    borderRadius: 0,
+  },
+  borderBottom: {
+    borderBottomWidth: 1,
+    borderColor: Colors.black,
+    borderRadius: 0,
   },
   default: {
     backgroundColor: Colors.white,
