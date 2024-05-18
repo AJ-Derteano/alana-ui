@@ -1,10 +1,12 @@
 import { Alert, ScrollView, StyleSheet, Text, View } from 'react-native';
 
-import { AntDesign, FontAwesome } from '@expo/vector-icons';
+import { AntDesign, FontAwesome, FontAwesome5 } from '@expo/vector-icons';
 import { Button, List } from './src';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import TextInput from './src/components/TextInput';
 import Label from './src/components/Label';
+import Card from './src/components/Card/Card';
+import { Colors } from './src/theme/Colors';
 
 export default function App() {
   return (
@@ -15,7 +17,7 @@ export default function App() {
 
       <ScrollView>
         <List title='Components'>
-          <List.Accordion title='Buttons' expanded>
+          <List.Accordion title='Buttons'>
             <View
               style={{
                 display: 'flex',
@@ -243,7 +245,7 @@ export default function App() {
           </List.Accordion>
 
           <List.Accordion title='Listas'>
-            <List title='Lista acordion'>
+            <List title='Lista acordion' border>
               <List.Accordion
                 title='Customer service'
                 icon={
@@ -301,11 +303,59 @@ export default function App() {
                 onPress={() => Alert.alert('Item 3 pressed')}
               />
 
-              
               <List.Item>
                 <Text>Item 4</Text>
               </List.Item>
             </List>
+          </List.Accordion>
+
+          <List.Accordion title='Card' expanded>
+            <Card bordered light>
+              <Card.Header>
+                <Label type='h3' >Card header</Label>
+              </Card.Header>
+
+              <Card.Body>
+                <Label type='text'>
+                  Lorem ipsum dolor sit amet consectetur adipisicing elit. Illo
+                  nulla excepturi atque aspernatur quia inventore odio fuga
+                  aliquid animi maxime! Ratione possimus aut repellat tempore,
+                  nostrum vitae quasi et quis.
+                </Label>
+              </Card.Body>
+
+              <Card.Footer>
+                <Button
+                  block
+                  bordered={false}
+                  borderTop
+                  borderBottom
+                  borderColor={Colors.lightGray}
+                  icon={<AntDesign name='like2' size={24} color='black' />}
+                  onPress={() => Alert.alert('I like it')}
+                />
+                <Button
+                  block
+                  bordered={false}
+                  borderTop
+                  borderBottom
+                  borderColor={Colors.lightGray}
+                  icon={<AntDesign name='hearto' size={24} color='black' />}
+                  onPress={() => Alert.alert('I love it')}
+                />
+                <Button
+                  block
+                  bordered={false}
+                  borderTop
+                  borderBottom
+                  borderColor={Colors.lightGray}
+                  icon={
+                    <FontAwesome5 name='surprise' size={24} color='black' />
+                  }
+                  onPress={() => Alert.alert('Surprised')}
+                />
+              </Card.Footer>
+            </Card>
           </List.Accordion>
         </List>
       </ScrollView>
