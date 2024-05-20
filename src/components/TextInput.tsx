@@ -17,7 +17,10 @@ interface TextInputProps {
   icon?: React.JSX.Element | ((props: { color: string }) => React.JSX.Element);
   iconPosition?: 'left' | 'right';
   keyBoardType?: KeyboardTypeOptions;
+  color?: string;
   colorFocus?: string;
+  borderColor?: string;
+  bgLabelColor?: string;
   onChangeText?: (text: string) => void;
 }
 
@@ -28,7 +31,10 @@ const TextInput = ({
   icon,
   iconPosition = 'left',
   keyBoardType = 'default',
+  color = Colors.black,
   colorFocus = Colors.primary,
+  borderColor = Colors.black,
+  bgLabelColor = Colors.white,
   onChangeText,
 }: TextInputProps) => {
   const [isFocused, setIsFocused] = useState(false);
@@ -67,7 +73,7 @@ const TextInput = ({
       {
         translateY: slideAnim.interpolate({
           inputRange: [0, 1],
-          outputRange: [0, -18],
+          outputRange: [0, -25],
         }),
       },
     ],
@@ -78,13 +84,13 @@ const TextInput = ({
       style={[
         styles.container,
         {
-          borderColor: isFocused ? colorFocus : Colors.black,
+          borderColor: isFocused ? colorFocus : borderColor,
           flexDirection: iconPosition === 'right' ? 'row-reverse' : 'row',
         },
       ]}
     >
       {typeof icon === 'function'
-        ? icon?.({ color: isFocused ? colorFocus : Colors.black })
+        ? icon?.({ color: isFocused ? colorFocus : borderColor })
         : icon}
 
       <View style={{ flex: 1 }}>
@@ -94,7 +100,8 @@ const TextInput = ({
               style={[
                 styles.label,
                 {
-                  color: isFocused ? colorFocus : Colors.black,
+                  backgroundColor: bgLabelColor,
+                  color: isFocused ? colorFocus : borderColor,
                   fontSize: valueLength > 0 || placeholder ? 12 : 16,
                 },
               ]}
@@ -108,7 +115,7 @@ const TextInput = ({
           ref={inputRef}
           value={value}
           placeholder={placeholder}
-          style={{ flex: 1 }}
+          style={[styles.input, { color }]}
           onChangeText={(text) => {
             if (
               keyBoardType === 'numeric' ||
@@ -150,8 +157,9 @@ const styles = StyleSheet.create({
   },
   label: {
     position: 'absolute',
-    top: 2,
-    backgroundColor: Colors.white,
+    top: 8,
     paddingHorizontal: 5,
+    borderRadius: 5,
   },
+  input: { minHeight: 40, flex: 1, fontSize: 16 },
 });

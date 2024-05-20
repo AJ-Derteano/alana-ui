@@ -199,6 +199,7 @@ export default function App() {
                 placeholder='Hello world 🌍'
                 icon={<AntDesign name='search1' size={24} color='black' />}
               />
+              
               <TextInput
                 label='Label icon right'
                 placeholder='Write here'
