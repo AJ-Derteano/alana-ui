@@ -1,6 +1,6 @@
 {
   "name": "alana-ui",
-  "version": "0.0.32",
+  "version": "0.0.4",
   "private": false,
   "main": "lib\\commonjs\\index.js",
   "files": [
