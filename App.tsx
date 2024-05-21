@@ -1,7 +1,7 @@
 import { Alert, ScrollView, StyleSheet, Text, View } from 'react-native';
 
 import { AntDesign, FontAwesome, FontAwesome5 } from '@expo/vector-icons';
-import { Button, List } from './src';
+import { Button, Divider, List } from './src';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import TextInput from './src/components/TextInput';
 import Label from './src/components/Label';
@@ -61,9 +61,9 @@ export default function App() {
                 />
               </View>
             </View>
-          </List.Accordion>
 
-          <List.Accordion title='Icon buttons'>
+            <Label>Icon Buttons </Label>
+            <Divider />
             <View
               style={{
                 display: 'flex',
@@ -107,9 +107,9 @@ export default function App() {
                 />
               </View>
             </View>
-          </List.Accordion>
 
-          <List.Accordion title='Buttons with loading state'>
+            <Label>Buttons with loading state</Label>
+            <Divider />
             <View
               style={{
                 display: 'flex',
@@ -145,9 +145,9 @@ export default function App() {
                 />
               </View>
             </View>
-          </List.Accordion>
 
-          <List.Accordion title='Buttons with loading state and custom loading color and size'>
+            <Label>Buttons with loading state and custom loading color</Label>
+            <Divider />
             <View
               style={{
                 display: 'flex',
@@ -199,7 +199,7 @@ export default function App() {
                 placeholder='Hello world 🌍'
                 icon={<AntDesign name='search1' size={24} color='black' />}
               />
-              
+
               <TextInput
                 label='Label icon right'
                 placeholder='Write here'
@@ -313,7 +313,7 @@ export default function App() {
           <List.Accordion title='Card' expanded>
             <Card bordered light>
               <Card.Header>
-                <Label type='h3' >Card header</Label>
+                <Label type='h3'>Card header</Label>
               </Card.Header>
 
               <Card.Body>
@@ -357,6 +357,25 @@ export default function App() {
                 />
               </Card.Footer>
             </Card>
+          </List.Accordion>
+
+          <List.Accordion title='Divider'>
+            <View
+              style={{
+                marginBottom: 20,
+              }}
+            >
+              <Label>Default divider</Label>
+              <Divider />
+
+              <Label>Custom divider</Label>
+              <Divider color={Colors.primary} width={'70%'} />
+
+              <Label>Multiple dividers</Label>
+              <Divider color={Colors.error} width={'40%'} />
+              <Divider color={Colors.success} width={'20%'} />
+              <Divider color={Colors.warning} width={'10%'} />
+            </View>
           </List.Accordion>
         </List>
       </ScrollView>
