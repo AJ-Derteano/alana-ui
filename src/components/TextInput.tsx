@@ -21,6 +21,9 @@ interface TextInputProps {
   colorFocus?: string;
   borderColor?: string;
   bgLabelColor?: string;
+  isPassword?: boolean;
+  marginVertical?: number;
+  multiline?: boolean;
   onChangeText?: (text: string) => void;
 }
 
@@ -35,6 +38,9 @@ const TextInput = ({
   colorFocus = Colors.primary,
   borderColor = Colors.black,
   bgLabelColor = Colors.white,
+  isPassword = false,
+  marginVertical = 10,
+  multiline = false,
   onChangeText,
 }: TextInputProps) => {
   const [isFocused, setIsFocused] = useState(false);
@@ -87,6 +93,9 @@ const TextInput = ({
           borderColor: isFocused ? colorFocus : borderColor,
           flexDirection: iconPosition === 'right' ? 'row-reverse' : 'row',
         },
+        {
+          marginVertical,
+        },
       ]}
     >
       {typeof icon === 'function'
@@ -115,7 +124,10 @@ const TextInput = ({
           ref={inputRef}
           value={value}
           placeholder={placeholder}
+          placeholderTextColor={color}
+          secureTextEntry={isPassword}
           style={[styles.input, { color }]}
+          multiline={multiline}
           onChangeText={(text) => {
             if (
               keyBoardType === 'numeric' ||
@@ -151,9 +163,9 @@ const styles = StyleSheet.create({
     borderColor: Colors.black,
     borderRadius: Theme.borderRadius,
     padding: Theme.padding,
-    marginVertical: 10,
     flexDirection: 'row',
     gap: 5,
+    height: 50,
   },
   label: {
     position: 'absolute',
