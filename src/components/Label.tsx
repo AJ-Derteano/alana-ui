@@ -1,5 +1,6 @@
 import { StyleSheet, Text, TextStyle, View } from 'react-native';
 import React from 'react';
+import { Theme } from '../theme/Theme';
 
 interface LabelProps {
   children?: React.ReactNode;
@@ -42,24 +43,24 @@ export default Label;
 
 const styles = StyleSheet.create({
   text: {
-    fontSize: 16,
+    fontSize: Theme.fontSizes.text,
   },
   h1: {
-    fontSize: 32,
+    fontSize: Theme.fontSizes.h1,
   },
   h2: {
-    fontSize: 24,
+    fontSize: Theme.fontSizes.h2,
   },
   h3: {
-    fontSize: 20,
+    fontSize: Theme.fontSizes.h3,
   },
   h4: {
-    fontSize: 18,
+    fontSize: Theme.fontSizes.h4,
   },
   h5: {
-    fontSize: 16,
+    fontSize: Theme.fontSizes.h5,
   },
   h6: {
-    fontSize: 14,
+    fontSize: Theme.fontSizes.h6,
   },
 });
