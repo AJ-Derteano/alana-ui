@@ -7,6 +7,7 @@ import {
 } from 'react-native';
 import React from 'react';
 import { Colors } from '../theme/Colors';
+import { Theme } from '../theme/Theme';
 
 interface ButtonProps {
   title?: string;
@@ -15,6 +16,7 @@ interface ButtonProps {
   borderTop?: boolean;
   borderBottom?: boolean;
   borderColor?: string;
+  bgColor?: string;
   icon?: React.JSX.Element | ((props: { color: string }) => React.JSX.Element);
   iconPosition?: 'left' | 'right';
   loading?: boolean;
@@ -30,6 +32,7 @@ const Button = ({
   borderTop = false,
   borderBottom = false,
   borderColor = Colors.black,
+  bgColor,
   icon,
   iconPosition = 'left',
   loading = false,
@@ -51,6 +54,7 @@ const Button = ({
       ...(borderTop ? styles.borderTop : {}),
       ...(borderBottom ? styles.borderBottom : {}),
       borderColor,
+      backgroundColor: bgColor ?? Colors.white,
     };
   };
 
@@ -86,12 +90,17 @@ const Button = ({
             : { flexDirection: 'row' }),
         }}
         onPress={onPress}
+        disabled={loading}
       >
         {typeof icon === 'function'
           ? icon?.({ color: type ? Colors.white : Colors.black })
           : icon}
         {loading && !icon && <ActivityIndicator color={loadingColor} />}
-        {title && <Text style={[getTextColor()]}>{title}</Text>}
+        {title && (
+          <Text style={[getTextColor(), { fontSize: Theme.fontSizes.h5 }]}>
+            {title}
+          </Text>
+        )}
       </TouchableOpacity>
     </View>
   );
