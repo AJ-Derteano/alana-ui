@@ -16,7 +16,10 @@ interface ButtonProps {
   borderTop?: boolean;
   borderBottom?: boolean;
   borderColor?: string;
-  bgColor?: string;
+  customColor: {
+    bgColor: string;
+    color: string;
+  };
   icon?: React.JSX.Element | ((props: { color: string }) => React.JSX.Element);
   iconPosition?: 'left' | 'right';
   loading?: boolean;
@@ -32,7 +35,10 @@ const Button = ({
   borderTop = false,
   borderBottom = false,
   borderColor = Colors.black,
-  bgColor,
+  customColor = {
+    bgColor: Colors.white,
+    color: Colors.black,
+  },
   icon,
   iconPosition = 'left',
   loading = false,
@@ -54,7 +60,9 @@ const Button = ({
       ...(borderTop ? styles.borderTop : {}),
       ...(borderBottom ? styles.borderBottom : {}),
       borderColor,
-      backgroundColor: bgColor ?? Colors.white,
+      ...(customColor
+        ? { color: customColor.color, backgroundColor: customColor.bgColor }
+        : {}),
     };
   };
 
