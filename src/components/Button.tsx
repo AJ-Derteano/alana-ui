@@ -16,7 +16,7 @@ interface ButtonProps {
   borderTop?: boolean;
   borderBottom?: boolean;
   borderColor?: string;
-  customColor: {
+  customColor?: {
     bgColor: string;
     color: string;
   };
