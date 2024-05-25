@@ -60,9 +60,7 @@ const Button = ({
       ...(borderTop ? styles.borderTop : {}),
       ...(borderBottom ? styles.borderBottom : {}),
       borderColor,
-      ...(customColor
-        ? { color: customColor.color, backgroundColor: customColor.bgColor }
-        : {}),
+      ...(customColor ? { backgroundColor: customColor.bgColor } : {}),
     };
   };
 
@@ -105,7 +103,15 @@ const Button = ({
           : icon}
         {loading && !icon && <ActivityIndicator color={loadingColor} />}
         {title && (
-          <Text style={[getTextColor(), { fontSize: Theme.fontSizes.h5 }]}>
+          <Text
+            style={[
+              getTextColor(),
+              { fontSize: Theme.fontSizes.h5 },
+              {
+                color: customColor ? customColor.color : Colors.black,
+              },
+            ]}
+          >
             {title}
           </Text>
         )}
