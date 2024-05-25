@@ -5,6 +5,8 @@ import {
   View,
   Animated,
   KeyboardTypeOptions,
+  NativeSyntheticEvent,
+  TextInputFocusEventData,
 } from 'react-native';
 import React, { useEffect, useRef, useState } from 'react';
 import { Theme } from '../theme/Theme';
@@ -24,7 +26,9 @@ interface TextInputProps {
   isPassword?: boolean;
   marginVertical?: number;
   multiline?: boolean;
+  numberOfLines?: number;
   onChangeText?: (text: string) => void;
+  onBlur?: (e: NativeSyntheticEvent<TextInputFocusEventData>) => void;
 }
 
 const TextInput = ({
@@ -41,7 +45,9 @@ const TextInput = ({
   isPassword = false,
   marginVertical = 10,
   multiline = false,
+  numberOfLines = 1,
   onChangeText,
+  onBlur,
 }: TextInputProps) => {
   const [isFocused, setIsFocused] = useState(false);
   const [valueLength, setValueLength] = useState(0);
@@ -57,7 +63,8 @@ const TextInput = ({
     }).start();
   };
 
-  const handleBlur = () => {
+  const handleBlur = (e: NativeSyntheticEvent<TextInputFocusEventData>) => {
+    onBlur?.(e);
     setIsFocused(false);
     if (!value && !placeholder && valueLength === 0) {
       Animated.timing(slideAnim, {
@@ -128,6 +135,7 @@ const TextInput = ({
           secureTextEntry={isPassword}
           style={[styles.input, { color }]}
           multiline={multiline}
+          numberOfLines={numberOfLines}
           onChangeText={(text) => {
             if (
               keyBoardType === 'numeric' ||
