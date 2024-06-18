@@ -16,6 +16,7 @@ interface TextInputProps {
   label?: string;
   placeholder?: string;
   value?: string;
+  textAlign?: 'left' | 'right' | 'center';
   icon?: React.JSX.Element | ((props: { color: string }) => React.JSX.Element);
   iconPosition?: 'left' | 'right';
   keyBoardType?: KeyboardTypeOptions;
@@ -36,6 +37,7 @@ const TextInput = ({
   label,
   placeholder,
   value,
+  textAlign = 'left',
   icon,
   iconPosition = 'left',
   keyBoardType = 'default',
@@ -136,9 +138,18 @@ const TextInput = ({
           placeholder={placeholder}
           placeholderTextColor={color}
           secureTextEntry={isPassword}
-          style={[styles.input, { color }]}
+          style={[
+            styles.input,
+            {
+              color,
+              minHeight: 40 * numberOfLines,
+              paddingTop: numberOfLines > 1 ? 10 : 0,
+            },
+          ]}
           multiline={multiline}
           numberOfLines={numberOfLines}
+          {...(multiline && { textAlignVertical: 'top' })}
+          {...(textAlign && { textAlign })}
           onChangeText={(text) => {
             if (
               keyBoardType === 'numeric' ||
