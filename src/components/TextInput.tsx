@@ -28,7 +28,8 @@ interface TextInputProps {
   multiline?: boolean;
   numberOfLines?: number;
   onChangeText?: (text: string) => void;
-  onBlur?: (e: NativeSyntheticEvent<TextInputFocusEventData>) => void;
+  onBlur?: (e?: NativeSyntheticEvent<TextInputFocusEventData>) => void;
+  onFocus?: (e?: NativeSyntheticEvent<TextInputFocusEventData>) => void;
 }
 
 const TextInput = ({
@@ -48,13 +49,15 @@ const TextInput = ({
   numberOfLines = 1,
   onChangeText,
   onBlur,
+  onFocus,
 }: TextInputProps) => {
   const [isFocused, setIsFocused] = useState(false);
   const [valueLength, setValueLength] = useState(0);
   const [slideAnim] = useState(new Animated.Value(0));
   const inputRef = useRef<Input>(null);
 
-  const handleFocus = () => {
+  const handleFocus = (e?: NativeSyntheticEvent<TextInputFocusEventData>) => {
+    onFocus?.(e);
     setIsFocused(true);
     Animated.timing(slideAnim, {
       toValue: 1,
